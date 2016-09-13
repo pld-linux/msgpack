@@ -1,4 +1,6 @@
-#
+# TODO
+# - should c and c++ have separate -devel packages?
+
 # Conditional build:
 %bcond_without	tests		# build without tests
 
@@ -11,7 +13,10 @@ Group:		Libraries
 Source0:	https://github.com/msgpack/msgpack-c/releases/download/cpp-%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	fde8da1388d4f8daf21faee5536a53cf
 URL:		http://msgpack.org/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 %if %{with tests}
 BuildRequires:	gtest-devel
 BuildRequires:	zlib-devel
