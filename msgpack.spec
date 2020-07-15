@@ -6,16 +6,14 @@
 
 Summary:	Binary-based efficient object serialization library
 Name:		msgpack
-Version:	1.4.1
+Version:	3.3.0
 Release:	1
 License:	Boost
 Group:		Libraries
 Source0:	https://github.com/msgpack/msgpack-c/releases/download/cpp-%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	fde8da1388d4f8daf21faee5536a53cf
-URL:		http://msgpack.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	libtool
+# Source0-md5:	e676575d52caae974e579c3d5f0ba6a2
+URL:		https://msgpack.org/
+BuildRequires:	cmake >= 2.8.0
 BuildRequires:	pkgconfig
 %if %{with tests}
 BuildRequires:	gtest-devel
@@ -40,13 +38,11 @@ Libraries and header files for %{name}
 %setup -q
 
 %build
-%{__aclocal}
-%{__libtoolize}
-%{__autoconf}
-%{__autoheader}
-%{__automake} --force-missing
-%configure \
-	--disable-static
+install -d build
+cd build
+%cmake \
+	-DMSGPACK_CXX11=ON \
+	..
 %{__make}
 
 %if %{with tests}
@@ -55,10 +51,8 @@ Libraries and header files for %{name}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libmsgpackc.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -79,3 +73,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/msgpack
 %{_libdir}/libmsgpackc.so
 %{_pkgconfigdir}/msgpack.pc
+%{_libdir}/cmake/msgpack/msgpack*.cmake
