@@ -2,7 +2,7 @@
 # - should c and c++ have separate -devel packages?
 
 # Conditional build:
-%bcond_without	tests		# build without tests
+%bcond_with	tests		# build without tests
 
 Summary:	Binary-based efficient object serialization library
 Name:		msgpack
