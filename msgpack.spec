@@ -6,7 +6,7 @@ Summary:	Binary-based efficient object serialization library
 Summary(pl.UTF-8):	Biblioteka do wydajnej, binarnej serializacji obiektów
 Name:		msgpack
 Version:	3.3.0
-Release:	2
+Release:	3
 License:	Boost v1.0
 Group:		Libraries
 #Source0Download: https://github.com/msgpack/msgpack-c/releases
