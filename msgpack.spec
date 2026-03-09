@@ -6,7 +6,7 @@ Summary:	Binary-based efficient object serialization library
 Summary(pl.UTF-8):	Biblioteka do wydajnej, binarnej serializacji obiektów
 Name:		msgpack
 Version:	3.3.0
-Release:	3
+Release:	4
 License:	Boost v1.0
 Group:		Libraries
 #Source0Download: https://github.com/msgpack/msgpack-c/releases
@@ -52,7 +52,9 @@ Pliki nagłówkowe biblioteki MessagePack.
 install -d build
 cd build
 %cmake .. \
-	-DMSGPACK_CXX11=ON
+	-DMSGPACK_CXX11=ON \
+	%{cmake_on_off tests MSGPACK_BUILD_TESTS} \
+	-DMSGPACK_BUILD_EXAMPLES=OFF
 
 %{__make}
 
